@@ -11,15 +11,10 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_HOST, {
     useNewUrlParser: true
-}).then(() => {
-    console.log("Successfully connected to the database");
-}).catch(err => {
-    console.log('Could not connect to the database. Error...', err);
-    process.exit();
 });
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 require('./app/routes/routes.js')(app);
 
