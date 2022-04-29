@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 mongoose.connect(process.env.DATABASE_HOST, {
     useNewUrlParser: true
-});
+}, (error) => console.log(error.toString()));
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 require('./app/routes/routes.js')(app);
