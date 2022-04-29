@@ -13,14 +13,17 @@ app.use(bodyParser.json());
 
 mongoose.connect(process.env.DATABASE_HOST, {
     useNewUrlParser: true
-}, (error) => console.log(error.toString()));
+}, (error) => console.log("error"));
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+console.log('depois conexao');
 require('./app/routes/routes.js')(app);
-
+console.log('depois routes');
 app.get('/', (req, res) => {
     res.json({"message": "Server is running :D"});
 });
+
+console.log('depois da rota raiz');
 
 let PORT = process.env.PORT || 8088;
 
