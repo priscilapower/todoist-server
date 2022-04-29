@@ -11,10 +11,22 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-await mongoose.connect(process.env.DATABASE_HOST, {
-    useNewUrlParser: true
-}, (error) => console.log(error));
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.DATABASE_HOST, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true
+        });
+
+        console.log('MongoDB connected!!');
+    } catch (err) {
+        console.log('Failed to connect to MongoDB', err);
+    }
+};
+
+connectDB();
 
 console.log('depois conexao');
 require('./app/routes/routes.js')(app);
