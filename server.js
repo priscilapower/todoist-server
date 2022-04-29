@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 app.use(cors);
+app(express.json())
 
 require('./app/routes/routes.js')(app);
 
