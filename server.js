@@ -21,7 +21,6 @@ mongoose.connect(process.env.DATABASE_HOST, {
 });
 
 require('./app/routes/routes.js')(app);
-
 app.get('/', (req, res) => {
     res.json({"message": "Server is running :D"});
 });
