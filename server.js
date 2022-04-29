@@ -6,10 +6,9 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-app.use(cors);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
+
+require('./app/routes/routes.js')(app);
 
 app.get('/', (req, res) => {
     res.json({"message": "Server is running :D"});
