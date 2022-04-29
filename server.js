@@ -14,10 +14,7 @@ app.use(bodyParser.json());
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.DATABASE_HOST, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false,
-            useCreateIndex: true
+            useNewUrlParser: true
         });
 
         console.log('MongoDB connected!!');
