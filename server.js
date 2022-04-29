@@ -11,9 +11,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.DATABASE_HOST, {
+await mongoose.connect(process.env.DATABASE_HOST, {
     useNewUrlParser: true
-}, (error) => console.log("error"));
+}, (error) => console.log(error));
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 console.log('depois conexao');
